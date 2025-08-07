@@ -1,0 +1,36 @@
+<!-- ui.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Timer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>⏳ Focus Timer</h1>
+    <p id="countdown">25:00</p>
+    <button onclick="startTimer()">Start</button>
+  </div>
+
+  <script>
+    let countdownElement = document.getElementById("countdown");
+    let totalSeconds = 25 * 60; // Default 25 minutes
+
+    function startTimer() {
+      let interval = setInterval(() => {
+        let mins = Math.floor(totalSeconds / 60);
+        let secs = totalSeconds % 60;
+        countdownElement.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        totalSeconds--;
+
+        if (totalSeconds < 0) {
+          clearInterval(interval);
+          countdownElement.textContent = "✅ Done!";
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
